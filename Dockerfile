@@ -18,6 +18,7 @@ ARG RV64_REPO_URL=https://github.com/riscv-collab/riscv-gnu-toolchain/releases/d
 # apt's mirror domain
 ARG APT_MIRROR_DOMAIN=mirrors.tuna.tsinghua.edu.cn
 
+ENV PATH="/sbt/bin:/riscv-glibc/bin:/riscv-elf/bin:${PATH}"
 
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
     sed -i s@/archive.ubuntu.com/@/$APT_MIRROR_DOMAIN/@g /etc/apt/sources.list && \
@@ -39,11 +40,10 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
     mv riscv riscv-elf && \
     tar -zxf riscv$BITS-glibc-ubuntu-20.04-nightly-$RV64_VERSION-nightly.tar.gz && \
     mv riscv riscv-glibc && \
-    echo "export PATH=/riscv-glibc/bin:/riscv-elf/bin:$PATH" >> ~/.bashrc && \
     rm -rf riscv$BITS-elf-ubuntu-20.04-nightly-$RV64_VERSION-nightly.tar.gz && \
     rm -rf riscv$BITS-glibc-ubuntu-20.04-nightly-$RV64_VERSION-nightly.tar.gz && \
     wget -q https://download.qemu.org/qemu-$QEMU_VERSION.tar.xz && \
-    tar xvJf qemu-$QEMU_VERSION.tar.xz && \
+    tar xJf qemu-$QEMU_VERSION.tar.xz && \
     cd qemu-$QEMU_VERSION && \
     ./configure --target-list=riscv$BITS-softmmu && \
     make -j$(nproc) && \
@@ -51,5 +51,4 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
     cd .. && rm -rf qemu-$QEMU_VERSION qemu-$QEMU_VERSION.tar.xz && \
     wget -q https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz && \
     tar -xzf sbt-$SBT_VERSION.tgz && \
-    echo "export PATH=/sbt/bin:$PATH" >> ~/.bashrc && \
     rm -rf sbt-$SBT_VERSION.tgz
