@@ -23,7 +23,7 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
     sed -i s@/archive.ubuntu.com/@/$APT_MIRROR_DOMAIN/@g /etc/apt/sources.list && \
     apt -y -qq update && \
     apt -y -qq upgrade && \
-    apt install -y -qq default-jdk g++ autoconf flex bison bc python3 wget make gcc vim git ninja-build libglib2.0-dev libpixman-1-dev pkg-config &&\
+    apt install -y -qq sudo default-jdk g++ autoconf flex bison bc python3 wget make gcc vim git ninja-build libglib2.0-dev libpixman-1-dev pkg-config &&\
     wget -q https://github.com/verilator/verilator/archive/refs/tags/v$VERILATOR_VERSION.tar.gz && \
     tar -zxf v$VERILATOR_VERSION.tar.gz && \
     cd verilator-$VERILATOR_VERSION && \
