@@ -10,7 +10,7 @@ ARG BITS=64
 ARG RV64_VERSION=2021.09.21
 ARG QEMU_VERSION=6.2.0
 ARG VERILATOR_VERSION=4.210
-ARG SBT_VERSION=1.5.5
+ARG SBT_VERSION=1.5.7
 
 # static link
 ARG RV64_REPO_URL=https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download
