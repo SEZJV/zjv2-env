@@ -12,9 +12,9 @@ $ docker pull alphavake/zjv2
 
 ## Toolchain List
 
-- **qemu-system-riscv64**: v6.1.0
+- **qemu-system-riscv64**: v6.2.0
 - **riscv-gnu-toolchain**: nightly 2021.09.21 (64-bit)
-- **sbt**: 1.5.5
+- **sbt**: 1.5.7
 - **verilator**: 4.210
 
 ## LICENSE
